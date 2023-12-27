@@ -1,0 +1,19 @@
+{
+  "name": "Circle-CI-Go-Templ",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/junho-yoon99/Circle-CI-Go-Templ.git",
+  "author": "junho-yoon99 <junho.yoon@mckinleyrice.co>",
+  "license": "MIT",
+  "dependencies": {
+    "daisyui": "^4.4.24"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.0"
+  },
+  "scripts": {
+    "style": "tailwindcss -i tailwind.css -o static/styles.css",
+    "style:watch": "tailwindcss -i tailwind.css -o static/styles.css --watch",
+    "db:dev:up": "docker-compose up -d"
+  }
+}
