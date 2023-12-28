@@ -2,10 +2,11 @@ package database
 
 import (
 	"context"
-	"go.mongodb.org/mongo-driver/mongo"
-	"go.mongodb.org/mongo-driver/mongo/options"
 	"log"
 	"os"
+
+	"go.mongodb.org/mongo-driver/mongo"
+	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
 // Collections
@@ -21,8 +22,8 @@ var client *mongo.Client
 var dburi, dbname string
 
 func Connect() {
-	dburi = os.Getenv("DATABASE_URL")
-	dbname = os.Getenv("DATABASE_NAME")
+	dburi = os.Getenv("MONGODB_URI")
+	dbname = os.Getenv("MONGODB_DATABASE_NAME")
 
 	// Check env variable status
 	if dburi == "" {
