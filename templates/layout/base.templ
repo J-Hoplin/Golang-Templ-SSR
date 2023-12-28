@@ -9,15 +9,17 @@ templ Base(title string) {
 			<title>{ title }</title>
 		</head>
 		<body class="p-5">
-			<main class="w-full h-full text-gray-600">
-				<nav class="px-6 py-3 bg-emerald-500 flex items-center justify-between text-white">
+			<main class="w-full min-h-screen text-gray-600">
+				<nav class="px-6 py-3 mb-6 bg-emerald-500 flex items-center justify-between text-white rounded">
 					<p>My TODO</p>
 					<div class="flex justify-between">
 						<div hx-get="/utility/time" hx-trigger="every 1s"></div>
 						<input type="checkbox" value="synthwave" class="ml-5 toggle theme-controller"/>
 					</div>
 				</nav>
-				{ children... }
+				<div class="p-6 bg-emerald-200 min-h-full">
+					{ children... }
+				</div>
 			</main>
 		</body>
 	</html>

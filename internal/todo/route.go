@@ -7,5 +7,5 @@ func EnrollRoute(group *gin.RouterGroup) {
 	group.GET("/:tid")
 	group.POST("/")
 	group.PATCH("/:tid")
-	group.DELETE("/:tid")
+	group.DELETE("/:tid", DeleteTODO)
 }

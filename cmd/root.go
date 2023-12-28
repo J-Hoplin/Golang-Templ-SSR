@@ -20,6 +20,7 @@ func init() {
 	RootCmd.AddCommand(command.StartServer)
 	RootCmd.AddCommand(command.CompileTailwind)
 	RootCmd.AddCommand(command.StartDB)
+	RootCmd.AddCommand(command.GenerateDummy)
 }
 
 func Execute() {
