@@ -40,24 +40,24 @@ func DeleteTODO(c *gin.Context) {
 	// Get collection
 	collection := database.GetCollection(database.TODO)
 
-	if tid = c.Param("tid");tid == ""{
-		c.HTML(http.StatusBadRequest,"",templates.Error(errors.New("Task ID not found")))
+	if tid = c.Param("tid"); tid == "" {
+		c.HTML(http.StatusBadRequest, "", templates.Error(errors.New("Task ID not found")))
 		return
 	}
-	
+
 	var filter bson.M
 	fmt.Println(tid)
 	if objId, err := primitive.ObjectIDFromHex(tid); err != nil {
-		c.HTML(http.StatusBadRequest,"", templates.Error(err))
+		c.HTML(http.StatusBadRequest, "", templates.Error(err))
 		return
-	}else{
+	} else {
 		filter = bson.M{"_id": objId}
 	}
 
-	_, err := collection.DeleteOne(context.TODO(),filter)
-	if err != nil{
-		
-		c.HTML(http.StatusBadRequest,"",templates.Error(err))
+	_, err := collection.DeleteOne(context.TODO(), filter)
+	if err != nil {
+
+		c.HTML(http.StatusBadRequest, "", templates.Error(err))
 		return
 	}
 	fmt.Println("Here")

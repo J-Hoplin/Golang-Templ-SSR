@@ -28,6 +28,8 @@ func InitServer() {
 	database.Connect()
 	defer database.Disconnect()
 
+	GenerateDummy()
+
 	// TODO Handler
 	todoRoute := root.Group("/todo")
 	todo.EnrollRoute(todoRoute)
