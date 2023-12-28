@@ -1,0 +1,24 @@
+package layout
+
+templ Base(title string) {
+	<html>
+		<head>
+			<meta charset="UTF-8"/>
+			<link href="../static/tailwind.css" rel="stylesheet"/>
+			<script src="../static/htmx.min.js"></script>
+			<title>{ title }</title>
+		</head>
+		<body class="p-5">
+			<main class="w-full h-full text-gray-600">
+				<nav class="px-6 py-3 bg-emerald-500 flex items-center justify-between text-white">
+					<p>My TODO</p>
+					<div class="flex justify-between">
+						<div hx-get="/utility/time" hx-trigger="every 1s"></div>
+						<input type="checkbox" value="synthwave" class="ml-5 toggle theme-controller"/>
+					</div>
+				</nav>
+				{ children... }
+			</main>
+		</body>
+	</html>
+}

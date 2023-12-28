@@ -1,0 +1,6 @@
+package templates
+
+templ Error(err error) {
+	<h1>Something went wrong!</h1>
+	<p>Failed with error { err.Error() }</p>
+}
