@@ -71,6 +71,8 @@ Golang SSE(Server Side Rendering) with HTMX, Golang, Golang Templ, TailwindCSS(D
 
 [Document](https://templ.guide/commands-and-tools/ide-support)
 
+> By default VS Code will not trigger completions when editing "string" content, for example within JSX attribute values. Updating the editor.quickSuggestions setting may improve your experience
+
 ```
 // VSCode settings.json
 
@@ -80,6 +82,9 @@ Golang SSE(Server Side Rendering) with HTMX, Golang, Golang Templ, TailwindCSS(D
    "tailwindCSS.includeLanguages": {
     "templ": "html"
    },
+   "editor.quickSuggestions": {
+      "strings": "on"
+   }
 
    ...
 }

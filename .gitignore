@@ -1,2 +1,5 @@
+# Node modules
 node_modules/
-templates/*.go
+
+# Templ compiled go file
+templates/**/*.go

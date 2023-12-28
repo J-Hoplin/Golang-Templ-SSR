@@ -2,14 +2,22 @@ package internal
 
 import (
 	"cicd/internal/database"
+	"cicd/internal/renderer"
 	"cicd/internal/todo"
+	"cicd/internal/utility"
+	"log"
+
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
-	"log"
 )
 
 func InitServer() {
 	root := gin.Default()
+
+	// Integrate Gin with Templ
+	root.HTMLRender = &renderer.TemplRender{}
+	// Static Assets
+	root.Static("/static", "static")
 
 	// Load Dot env
 	if err := godotenv.Load(); err != nil {
@@ -23,6 +31,10 @@ func InitServer() {
 	// TODO Handler
 	todoRoute := root.Group("/todo")
 	todo.EnrollRoute(todoRoute)
+
+	// Utility Handler
+	utilityRoute := root.Group("/utility")
+	utility.EnrollRoute(utilityRoute)
 
 	// When something makes an error while bootstraping server
 	if err := root.Run(":8080"); err != nil {
