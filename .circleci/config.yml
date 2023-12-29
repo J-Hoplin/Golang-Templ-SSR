@@ -9,7 +9,7 @@ commands:
   zip_artifact:
     description: Zip Artifact
     steps:
-      - run: zip application.zip .
+      - run: zip -r application.zip $(pwd)
 
 jobs:
   # Build
