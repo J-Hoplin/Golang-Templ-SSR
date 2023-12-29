@@ -6,10 +6,10 @@ commands:
       - run: sudo apt-get update
       - run: sudo apt install python3-pip
       - run: sudo pip3 install awsebcli --upgrade
-  zip_artifact:
+  eb_deploy:
     description: Zip Artifact
     steps:
-      - run: zip -r application.zip $(pwd)
+      - run: eb deploy Go-Templ-CircleCI
 
 jobs:
   # Build
@@ -33,9 +33,7 @@ jobs:
       - attach_workspace:
           at: .
       - checkout
-      - zip_artifact
-      - run: aws s3 cp ./application.zip s3://circle-ci-cicd/application.zip
-
+      - eb_deploy
 workflows:
   build_n_deploy:
     jobs:
