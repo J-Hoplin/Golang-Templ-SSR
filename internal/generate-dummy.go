@@ -22,12 +22,12 @@ func GenerateDummy() {
 			todoCollection := database.GetCollection(database.TODO)
 			var task model.TODOModel
 			if err := faker.FakeData(&task); err != nil {
-				log.Fatalln("Fail to generate data")
+				log.Printf("Number.%d - Fail to generate data: %v", no, err.Error())
 				return
 			}
 			task.IsComplete = false
 			if _, err := todoCollection.InsertOne(context.TODO(), task); err != nil {
-				log.Fatalln("Fail to insert data")
+				log.Printf("Number.%d - Fail to insert data: %v", no, err.Error())
 			}
 			fmt.Printf("Number.%d completed\n", no)
 		}(i + 1)

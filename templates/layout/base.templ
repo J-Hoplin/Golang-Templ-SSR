@@ -1,5 +1,7 @@
 package layout
 
+import "cicd/templates/components"
+
 templ Base(title string) {
 	<html>
 		<head>
@@ -17,6 +19,15 @@ templ Base(title string) {
 						<input type="checkbox" value="synthwave" class="ml-5 toggle theme-controller"/>
 					</div>
 				</nav>
+				<div class="p-4">
+					<div class="flex flex-row-reverse">
+						@components.Button("Add",templ.Attributes{
+							"hx-post":"/todo",
+							"hx-swap":"afterbegin",
+							"hx-target":"#todos",
+						})
+					</div>
+				</div>
 				<div class="p-6 bg-emerald-200 min-h-full">
 					{ children... }
 				</div>

@@ -5,6 +5,10 @@ services:
     image: go-templ-ssr
     container_name: go-templ-container
     restart: always
+    environment:
+      - MONGODB_URI="mongodb://root:hoplin1234!@db:27017/"
+      - MONGODB_DATABASE_NAME="todo"
+      - ENV="docker"
     networks:
       - ssr-network
     ports:
