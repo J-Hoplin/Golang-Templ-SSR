@@ -1,4 +1,12 @@
 version: 2.1
+commands:
+  env_init:
+    description: Initialize AWS CLI
+    steps:
+      - run: sudo apt-get update
+      - run: sudo apt install python3-pip
+      - run: sudo pip3 install awsebcli --upgrade
+
 jobs:
   # Build
   build:
@@ -6,16 +14,10 @@ jobs:
     machine:
       image: ubuntu-2004:202010-01
     steps:
+      # Get source code from github
       - checkout
-      - run:
-        name: Update system
-        command: sudo apt-get update
-      - run:
-        name: Install Python3
-        command: sudo apt install python3-pip
-      - run:
-        name: Update system
-        command: sudo pip3 install awsebcli --upgrade
+      - env_init
+      # Share same volume between jobs: https://negabaro.github.io/archive/circleci_persist_to_workspace
       - persist_to_workspace:
           root: .
           paths:
@@ -25,7 +27,7 @@ jobs:
       image: ubuntu-2004:202010-01
     steps:
       - attach_workspace:
-        at: .
+          at: .
       - checkout
       - run: aws s3 sync . s3://circle-ci-cicd
 
@@ -33,4 +35,6 @@ workflows:
   build_n_deploy:
     jobs:
       - build
-      - deploy
+      - deploy:
+          requires:
+            - build
