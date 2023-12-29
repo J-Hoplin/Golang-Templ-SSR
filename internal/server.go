@@ -6,6 +6,7 @@ import (
 	"cicd/internal/todo"
 	"cicd/internal/utility"
 	"log"
+	"os"
 
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
@@ -23,12 +24,14 @@ func InitServer() {
 	if err := godotenv.Load(); err != nil {
 		log.Fatalln("Fail to load .env file:", err.Error())
 	}
-
 	// Initialize Database
 	database.Connect()
 	defer database.Disconnect()
 
-	GenerateDummy()
+	// Generate dummy data if it's docker environment
+	if os.Getenv("ENV") == "docker" {
+		GenerateDummy()
+	}
 
 	// TODO Handler
 	todoRoute := root.Group("/todo")

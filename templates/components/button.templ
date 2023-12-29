@@ -1,0 +1,9 @@
+package components
+
+var property string
+
+templ Button(text string, props templ.Attributes) {
+	<button class="btn btn-outline btn-primary" { props... }>
+		{ text }
+	</button>
+}

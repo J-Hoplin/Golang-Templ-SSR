@@ -4,12 +4,15 @@ import (
 	"cicd/internal/database"
 	"cicd/internal/database/model"
 	"cicd/templates"
+	"cicd/templates/components"
 	"context"
 	"errors"
 	"fmt"
+	"log"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
+	"github.com/go-faker/faker/v4"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 )
@@ -30,7 +33,20 @@ func ListTODO(c *gin.Context) {
 
 func GetTODO(c *gin.Context) {}
 
-func CreateTODO(c *gin.Context) {}
+func CreateTODO(c *gin.Context) {
+	var task model.TODOModel
+	todoCollection := database.GetCollection(database.TODO)
+
+	if err := faker.FakeData(&task); err != nil {
+		log.Printf("Fail to generate data: %v", err.Error())
+		return
+	}
+	task.IsComplete = false
+	if _, err := todoCollection.InsertOne(context.TODO(), task); err != nil {
+		log.Printf("Fail to insert data: %v", err.Error())
+	}
+	c.HTML(http.StatusOK, "", components.Card(task))
+}
 
 func UpdateTOOD(c *gin.Context) {}
 

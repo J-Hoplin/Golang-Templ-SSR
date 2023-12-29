@@ -3,3 +3,6 @@ node_modules/
 
 # Templ compiled go file
 templates/**/*.go
+
+# Output css
+static/tailwind.css
