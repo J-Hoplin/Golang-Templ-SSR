@@ -32,6 +32,4 @@ workflows:
   build_n_deploy:
     jobs:
       - build
-      - deploy:
-        requires:
-          - build
+      - deploy
