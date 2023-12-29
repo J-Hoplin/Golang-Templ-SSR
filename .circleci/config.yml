@@ -6,15 +6,16 @@ jobs:
     machine:
       image: ubuntu-2004:202010-01
     steps:
-      # Get source code from github
       - checkout
       - run:
-        name: Initialize AWS CLI
-        command: |
-          sudo apt-get update
-          sudo apt install python3-pip
-          sudo pip3 install awsebcli --upgrade
-      # Share same volume between jobs: https://negabaro.github.io/archive/circleci_persist_to_workspace
+        name: Update system
+        command: sudo apt-get update
+      - run:
+        name: Install Python3
+        command: sudo apt install python3-pip
+      - run:
+        name: Update system
+        command: sudo pip3 install awsebcli --upgrade
       - persist_to_workspace:
           root: .
           paths:
