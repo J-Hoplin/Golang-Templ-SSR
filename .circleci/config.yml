@@ -7,7 +7,7 @@ jobs:
     steps:
       # Get source code from github
       - checkout
-      - run
+      - run:
         name: Initialize AWS CLI
         command: |
             sudo apt-get update
