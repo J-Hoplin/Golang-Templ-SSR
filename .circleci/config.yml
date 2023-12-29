@@ -34,7 +34,7 @@ jobs:
           at: .
       - checkout
       - zip_artifact
-      - run: aws s3 sync ./application.zip s3://circle-ci-cicd
+      - run: aws s3 cp ./application.zip s3://circle-ci-cicd/application.zip
 
 workflows:
   build_n_deploy:
