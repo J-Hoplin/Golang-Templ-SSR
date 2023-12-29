@@ -21,23 +21,9 @@ jobs:
       # Get source code from github
       - checkout
       - env_init
-      # Share same volume between jobs: https://negabaro.github.io/archive/circleci_persist_to_workspace
-      - persist_to_workspace:
-          root: .
-          paths:
-            - .
-  deploy:
-    machine:
-      image: ubuntu-2004:202010-01
-    steps:
-      - attach_workspace:
-          at: .
-      - checkout
       - eb_deploy
+      # Share same volume between jobs: https://negabaro.github.io/archive/circleci_persist_to_workspace
 workflows:
   build_n_deploy:
     jobs:
       - build
-      - deploy:
-          requires:
-            - build
