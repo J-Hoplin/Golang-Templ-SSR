@@ -46,6 +46,7 @@ jobs:
       image: ubuntu-2004:202010-01
     steps:
       # Get source code from github
+      - checkout
       - env_init
       # Share same volume between jobs: https://negabaro.github.io/archive/circleci_persist_to_workspace
 
