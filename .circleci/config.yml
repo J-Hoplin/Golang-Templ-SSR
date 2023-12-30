@@ -53,7 +53,7 @@ jobs:
       # Share same volume between jobs: https://negabaro.github.io/archive/circleci_persist_to_workspace
 
 workflows:
-  build_n_deploy:
+  build_deploy:
     jobs:
       - build-phase-1
       - build-phase-2:
