@@ -6,9 +6,6 @@ commands:
       - run: sudo apt-get update
       - run: sudo apt install python3-pip
       - run: sudo pip3 install awsebcli --upgrade
-  eb_deploy:
-    description: Zip Artifact
-    steps:
       - run: sudo eb deploy Go-Templ-CircleCI-env
 
 jobs:
@@ -26,18 +23,7 @@ jobs:
           root: .
           paths:
             - .
-  deploy:
-    machine:
-      image: ubuntu-2004:202010-01
-    steps:
-      - attach_workspace:
-          at: .
-      - checkout
-      - eb_deploy
 workflows:
   build_n_deploy:
     jobs:
       - build
-      - deploy:
-          requires:
-            - build
