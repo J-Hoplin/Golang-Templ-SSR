@@ -1,1 +1,1 @@
-server: go run main.go start
+server: go run main.go server
