@@ -9,7 +9,7 @@ commands:
   eb_deploy:
     description: Zip Artifact
     steps:
-      - run: eb deploy Go-Templ-CircleCI-env
+      - run: sudo eb deploy Go-Templ-CircleCI-env
 
 jobs:
   # Build
