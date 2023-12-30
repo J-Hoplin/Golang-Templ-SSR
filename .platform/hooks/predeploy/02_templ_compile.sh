@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 
-# Install templ CLI
+
+export PATH=$PATH:$HOME/go/bin
+source ~/.bashrc
 go install github.com/a-h/templ/cmd/templ@latest
 
-# Compile templ
 templ generate
