@@ -9,6 +9,7 @@ commands:
   build-tailwind:
     description: Build tailwind
     steps:
+      - run: ls
       - run: npm install
       - run: npm install -D
       - run: npx tailwindcss -i static/config.css -o static/tailwind.css
