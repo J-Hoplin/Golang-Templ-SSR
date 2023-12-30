@@ -51,4 +51,10 @@ jobs:
 workflows:
   build_n_deploy:
     jobs:
+      - build-phase-1
+      - build-phase-2:
+          requires:
+            - build-phase-1
       - deploy
+          requires:
+            - build-phase-2
