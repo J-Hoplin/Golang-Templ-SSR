@@ -10,7 +10,7 @@ commands:
 
 jobs:
   # Build
-  build:
+  build-n-deploy:
     # Execute in linux VM: https://circleci.com/docs/executor-intro/#linux-vm
     machine:
       image: ubuntu-2004:202010-01
@@ -26,4 +26,4 @@ jobs:
 workflows:
   build_n_deploy:
     jobs:
-      - build
+      - build-n-deploy
