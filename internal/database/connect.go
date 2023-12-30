@@ -2,6 +2,7 @@ package database
 
 import (
 	"context"
+	"fmt"
 	"log"
 	"os"
 
@@ -27,15 +28,15 @@ func Connect() {
 
 	// Check env variable status
 	if dburi == "" {
-		log.Fatalln("Database URI Not found")
+		panic("Database URI Not found")
 	} else {
 		if dbname == "" {
-			log.Fatalln("Database Name not found")
+			panic("Database Name not found")
 		}
 	}
 
 	if connection, err := mongo.Connect(context.TODO(), options.Client().ApplyURI(dburi)); err != nil {
-		log.Fatalln("Fail to connect database:", err.Error())
+		panic(fmt.Sprintln("Fail to connect database:", err.Error()))
 	} else {
 		client = connection
 	}
