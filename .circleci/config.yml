@@ -57,10 +57,11 @@ jobs:
 workflows:
   build_deploy:
     jobs:
+      - deploy
       # - build-phase-1
       # - build-phase-2:
       #     requires:
       #       - build-phase-1
-      - deploy:
-          # requires:
-          #   - build-phase-2
+      # - deploy:
+      # requires:
+      #   - build-phase-2
