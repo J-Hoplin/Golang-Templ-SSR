@@ -49,18 +49,18 @@ jobs:
     steps:
       # Get source code from github
       - checkout
-      - attach_workspace:
-          at: .
+      # - attach_workspace:
+      #     at: .
       - env_init
       # Share same volume between jobs: https://negabaro.github.io/archive/circleci_persist_to_workspace
 
 workflows:
   build_deploy:
     jobs:
-      - build-phase-1
-      - build-phase-2:
-          requires:
-            - build-phase-1
+      # - build-phase-1
+      # - build-phase-2:
+      #     requires:
+      #       - build-phase-1
       - deploy:
-          requires:
-            - build-phase-2
+          # requires:
+          #   - build-phase-2
