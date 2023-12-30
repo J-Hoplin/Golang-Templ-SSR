@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-npm run style
+npx tailwindcss -i static/config.css -o static/tailwind.css
