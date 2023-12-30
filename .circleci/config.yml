@@ -57,11 +57,11 @@ jobs:
 workflows:
   build_deploy:
     jobs:
-      - deploy
-        filters:
-          branches:
-            only:
-              - main
+      - deploy:
+          filters:
+            branches:
+              only:
+                - main
       # - build-phase-1
       # - build-phase-2:
       #     requires:
