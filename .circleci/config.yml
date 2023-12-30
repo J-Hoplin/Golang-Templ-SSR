@@ -6,7 +6,7 @@ commands:
       - run: sudo apt-get update
       - run: sudo apt install python3-pip
       - run: sudo pip3 install awsebcli --upgrade
-      - run: eb deploy Go-Templ-CircleCI-env
+      - run: eb deploy 	Circle-CI-env
 
 jobs:
   # Build
