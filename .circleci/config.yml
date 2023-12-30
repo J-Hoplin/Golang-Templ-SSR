@@ -1,5 +1,17 @@
 version: 2.1
 commands:
+  build-templ:
+    description: Build templ
+    steps:
+      - run: go mod download
+      - run: go install github.com/a-h/templ/cmd/templ@latest
+      - run: templ generate
+  build-tailwind:
+    description: Build tailwind
+    steps:
+      - run: npm install
+      - run: npm install -D
+      - run: npx tailwindcss -i static/config.css -o static/tailwind.css
   env_init:
     description: Initialize AWS CLI
     steps:
@@ -9,21 +21,34 @@ commands:
       - run: eb deploy 	Circle-CI-env
 
 jobs:
+  build-phase-1:
+    docker:
+      - image: golang:latest
+    steps:
+      - checkout
+      - persist_to_workspace:
+          root: .
+          paths:
+            - .
+      - build-templ
+  build-phase-2:
+    docker:
+      - image: node
+    steps:
+      - attach_workspace:
+          at: .
+      - build-tailwind
   # Build
-  build-n-deploy:
+  deploy:
     # Execute in linux VM: https://circleci.com/docs/executor-intro/#linux-vm
     machine:
       image: ubuntu-2004:202010-01
     steps:
       # Get source code from github
-      - checkout
       - env_init
       # Share same volume between jobs: https://negabaro.github.io/archive/circleci_persist_to_workspace
-      - persist_to_workspace:
-          root: .
-          paths:
-            - .
+
 workflows:
   build_n_deploy:
     jobs:
-      - build-n-deploy
+      - deploy
