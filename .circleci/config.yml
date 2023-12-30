@@ -55,6 +55,6 @@ workflows:
       - build-phase-2:
           requires:
             - build-phase-1
-      - deploy
+      - deploy:
           requires:
             - build-phase-2
