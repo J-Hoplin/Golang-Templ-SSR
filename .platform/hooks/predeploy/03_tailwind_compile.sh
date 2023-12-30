@@ -1,3 +1,7 @@
 #!/usr/bin/env bash
 
-npx tailwindcss -i static/config.css -o static/tailwind.css
+# Install dependencies
+npm install
+
+# Compile
+npm run style
