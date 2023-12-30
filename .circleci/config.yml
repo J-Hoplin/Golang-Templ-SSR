@@ -16,10 +16,11 @@ commands:
   env_init:
     description: Initialize AWS CLI
     steps:
+      - run: ls templates
       - run: sudo apt-get update
       - run: sudo apt install python3-pip
       - run: sudo pip3 install awsebcli --upgrade
-      - run: eb deploy 	Circle-CI-env
+      - run: eb deploy Circle-CI-env
 
 jobs:
   build-phase-1:
