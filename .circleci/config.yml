@@ -47,6 +47,8 @@ jobs:
     steps:
       # Get source code from github
       - checkout
+      - attach_workspace:
+          at: .
       - env_init
       # Share same volume between jobs: https://negabaro.github.io/archive/circleci_persist_to_workspace
 
