@@ -27,11 +27,12 @@ jobs:
       - image: golang:latest
     steps:
       - checkout
+      - build-templ
       - persist_to_workspace:
           root: .
           paths:
             - .
-      - build-templ
+
   build-phase-2:
     docker:
       - image: node
